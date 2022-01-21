@@ -1,0 +1,35 @@
+body{
+    font-family: sans-serif
+}
+#bookshelf{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10pt;
+    margin-top: 5%;
+}
+.cover{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow-wrap: normal;
+    background-color: burlywood;
+    gap: 2pt;
+    justify-content: center;
+    align-items: center;
+    width: 150pt;
+    border: 2pt black solid;
+}
+
+.bookText, .readCheckClass{
+    margin: 2pt;
+    font-weight: bold;
+
+}
+
+.labelText{
+    margin: 2pt;
+    margin-top: 5pt;
+    text-decoration: underline;
+    font-size: 14pt;
+    
+}

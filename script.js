@@ -26,27 +26,55 @@ let n =1
 
 addBook.prototype.sayBook = function(){
     console.log(this.title, this.author, this.pages, this.read)
-    let titleElement = document.createElement('p')
-        titleElement.id = n
-        n = n+1
-    let authorElement = document.createElement('p')
-        authorElement.id = n
-        n = n + 1
-    let pagesElement = document.createElement('p')
-        pagesElement.id = n
-        n = n+1
-    let readElement = document.createElement('p')
-        readElement.id = n
-        n = n+1
-    titleElement.innerText ="Title: " + this.title; 
-    authorElement.innerText ="Author: " + this.author;
-    pagesElement.innerText ="Pages: " + this.pages; 
-    readElement.innerText ="Read?: " + this.read;
+    let cover = document.createElement('div')
+    cover.classList.add("cover")
+        let titleLabelElement = document.createElement('p') //labels are not the imported user inputs. Putting them separately for aesthetic stacking.
+        let bookTitleElement = document.createElement('p')
+            bookTitleElement.id = n
+            n = n+1
+        let authorLabelElement = document.createElement('p')
+        let authorElement = document.createElement('p')
+            authorElement.id = n
+            n = n + 1
+        let pagesLabelElement = document.createElement('p')   
+        let pagesElement = document.createElement('p')
+            pagesElement.id = n
+            n = n+1
+        let readLabelElement = document.createElement('p')
+        let readElement = document.createElement('p')
+            readElement.id = n
+            readElement.classList.add('readCheckClass')
+            n = n+1
 
-    bookshelf.append(titleElement)
-    bookshelf.append(authorElement)
-    bookshelf.append(pagesElement)
-    bookshelf.append(readElement)
+
+    titleLabelElement.classList.add('labelText')
+    bookTitleElement.classList.add('bookText')
+    authorLabelElement.classList.add('labelText')
+    authorElement.classList.add('bookText')
+    pagesLabelElement.classList.add('labelText')
+    pagesElement.classList.add('bookText')
+    readLabelElement.classList.add('labelText')
+
+
+    titleLabelElement.innerText = 'Title'
+    bookTitleElement.innerText = this.title; 
+    authorLabelElement.innerText = 'Author'
+    authorElement.innerText = this.author;
+    pagesLabelElement.innerText = "Pages"
+    pagesElement.innerText =this.pages;
+    readLabelElement.innerText = "Read"
+    readElement.innerText = this.read;
+
+
+    bookshelf.append(cover)
+    cover.append(titleLabelElement)
+    cover.append(bookTitleElement)
+    cover.append(authorLabelElement)
+    cover.append(authorElement)
+    cover.append(pagesLabelElement)
+    cover.append(pagesElement)
+    cover.append(readLabelElement)
+    cover.append(readElement)
 }
 
 
