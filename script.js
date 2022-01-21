@@ -1,12 +1,4 @@
 
-/*const book = {
-    title: "The Hobbit",
-    pages: 255,
-    read: "Not Yet Read"
-}
-*/
-
-//console.log(book.title, book.pages, book.read)//
 
 
 
@@ -30,21 +22,37 @@ function addBook() {
 }
 
 
+let n =1
+
 addBook.prototype.sayBook = function(){
     console.log(this.title, this.author, this.pages, this.read)
+    let titleElement = document.createElement('p')
+        titleElement.id = n
+        n = n+1
+    let authorElement = document.createElement('p')
+        authorElement.id = n
+        n = n + 1
+    let pagesElement = document.createElement('p')
+        pagesElement.id = n
+        n = n+1
+    let readElement = document.createElement('p')
+        readElement.id = n
+        n = n+1
+    titleElement.innerText ="Title: " + this.title; 
+    authorElement.innerText ="Author: " + this.author;
+    pagesElement.innerText ="Pages: " + this.pages; 
+    readElement.innerText ="Read?: " + this.read;
+
+    bookshelf.append(titleElement)
+    bookshelf.append(authorElement)
+    bookshelf.append(pagesElement)
+    bookshelf.append(readElement)
 }
 
 
+
+
 function addBookToLibrary(){
-    //e.preventDefault();
-/*
-    let book = {
-        title: document.querySelector('#title').value,
-        author: document.querySelector('#author').value,
-        pages: document.querySelector('#pages').value,
-        read: document.querySelector('#readStatus').value
-    }
-*/
     let book = new addBook(
         "document.querySelector('#title').value",
         "author: document.querySelector('#author').value",
@@ -72,26 +80,33 @@ submitBtn.addEventListener('click', addBookToLibrary)
 
 let myLibrary = [];
 let indexDisplay
+let libraryNumber
 
-
+const bookshelf = document.querySelector('#bookshelf')
 
 function displayLibrary() {
+    removeBooks()
     for (let i = 0; i < myLibrary.length; i++) {
         console.log(myLibrary[i].sayBook())
+        
     }
 }
 
+function removeBooks() {
+    n = 1;
+    for (let i = 0; i < myLibrary.length; i++){
+        while (bookshelf.firstChild){
+            bookshelf.removeChild(bookshelf.firstChild)
+        }
+    }
 
-//myLibrary.forEach(function(item, index){
-    //console.log(item, index)
-//}
+
+}
+
 
 
 displayLibrary()
 
-//const book2 = new addBook('Curious George', 'HA Rey', '15', 'Not Read')
-//book1.sayBook()
-//book2.sayBook()
 
 const book1 = new addBook(
     'The Hobbit',
