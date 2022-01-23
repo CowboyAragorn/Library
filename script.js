@@ -1,8 +1,3 @@
-
-
-
-
-
 //Constructor for books, addbook2 is simply for display test, to be removed after//
 function addBook2(title, author, pages, read) {
     this.title = title
@@ -32,6 +27,9 @@ addBook2.prototype.sayBook = function () {
     let readElement = document.createElement('p')
 
     readElement.classList.add('readCheckClass')
+
+//Change Read Status//
+    let readButton = document.createElement('button')
    
 //remove button//  
     let removeButton = document.createElement('button')
@@ -45,6 +43,7 @@ addBook2.prototype.sayBook = function () {
     pagesElement.classList.add('bookText')
     readLabelElement.classList.add('labelText')
 
+    readButton.classList.add('readButton')
     removeButton.classList.add('removeButton')
 
 //Inserting object text//
@@ -55,8 +54,17 @@ addBook2.prototype.sayBook = function () {
     pagesLabelElement.innerText = "Pages"
     pagesElement.innerText = this.pages;
     readLabelElement.innerText = "Read"
-    readElement.innerText = this.read;
 
+    let readStatus
+    if (this.read == 1) {
+        readStatus = true
+        changeReadStatus(); //Checkbox default unchecked value is zero
+    }
+    else {
+        readStatus = false
+        changeReadStatus();
+    }
+    readButton.innerText = 'Read?'
     removeButton.innerText = 'Remove'
 
 //appending//
@@ -69,7 +77,30 @@ addBook2.prototype.sayBook = function () {
     cover.append(pagesElement)
     cover.append(readLabelElement)
     cover.append(readElement)
+    cover.append(readButton)
     cover.append(removeButton)
+
+    readButton.addEventListener('click', function () {
+        if (readStatus === true) {
+            readStatus = false
+            this.read = '0'
+            changeReadStatus();
+        }
+        else if (readStatus === false) {
+            readStatus = true
+            this.read = '1'
+            changeReadStatus();
+        }
+    })
+
+    function changeReadStatus() {
+        if (readStatus === false) {
+            readElement.innerText = 'No'
+        }
+        else if (readStatus === true) {
+            readElement.innerText = 'Yes'
+        }
+
 
 //Remove button event listener//
 removeButton.addEventListener('click', function(){
@@ -79,6 +110,7 @@ removeButton.addEventListener('click', function(){
 } )
 }
 
+}
 
 
 //Remove above addbook2 when completed//
@@ -91,7 +123,6 @@ function addBook() {
     this.read = document.querySelector('#readStatus').value
 }
 
-
 let n = 0
 
 addBook.prototype.sayBook = function(){
@@ -99,7 +130,7 @@ addBook.prototype.sayBook = function(){
     console.log(this.title, this.author, this.pages, this.read)
     let cover = document.createElement('div')
     cover.id = n
-    n = n+1
+    n = n + 1
     cover.classList.add("cover")
     let titleLabelElement = document.createElement('p') //labels are not the imported user inputs. Putting them separately for aesthetic stacking.
     let bookTitleElement = document.createElement('p')
@@ -115,6 +146,9 @@ addBook.prototype.sayBook = function(){
 
     readElement.classList.add('readCheckClass')
 
+    //Change Read Status//
+    let readButton = document.createElement('button')
+
     //remove button//  
     let removeButton = document.createElement('button')
 
@@ -127,6 +161,7 @@ addBook.prototype.sayBook = function(){
     pagesElement.classList.add('bookText')
     readLabelElement.classList.add('labelText')
 
+    readButton.classList.add('readButton')
     removeButton.classList.add('removeButton')
 
     //Inserting object text//
@@ -137,8 +172,8 @@ addBook.prototype.sayBook = function(){
     pagesLabelElement.innerText = "Pages"
     pagesElement.innerText = this.pages;
     readLabelElement.innerText = "Read"
-    readElement.innerText = this.read;
 
+    readButton.innerText = 'Read?'
     removeButton.innerText = 'Remove'
 
     //appending//
@@ -151,19 +186,53 @@ addBook.prototype.sayBook = function(){
     cover.append(pagesElement)
     cover.append(readLabelElement)
     cover.append(readElement)
+    cover.append(readButton)
     cover.append(removeButton)
 
-    //Remove button event listener//
-    removeButton.addEventListener('click', function () {
-        bookshelf.removeChild(cover);
-        myLibrary.splice(cover.id, 1)
-        displayLibrary();
+    let readStatus
+
+    function assignReadStatus() {
+        if (readStatus == '1') {
+            readElement.innerText = 'Yes'
+        }
+        else {
+            readElement.innerText = 'No'
+        }
+    }
+    
+    if (this.read == 'y'){
+        readStatus = '1'
+        assignReadStatus()
+    }
+    else {
+        readStatus = '0'
+        assignReadStatus()
+    }
+
+
+    readButton.addEventListener('click', function (){
+    if (readStatus == '1'){
+        readStatus = '0';
+        myLibrary[cover.id].read = 'n' //Changes the read property of the object in the array by calling to the index of the object in the array
+        console.log(myLibrary[cover.id]) 
+        assignReadStatus();
+    }
+    else if (readStatus == '0'){
+        readStatus = '1';
+        myLibrary[cover.id].read = 'y'
+        console.log(myLibrary[cover.id])
+        assignReadStatus();
+    }
+
+
     })
-}
-
-
-
-
+        //Remove button event listener//
+        removeButton.addEventListener('click', function () {
+            bookshelf.removeChild(cover);
+            myLibrary.splice(cover.id, 1);
+            displayLibrary();
+        })
+    }
 
 function addBookToLibrary(){
     let book = new addBook(
@@ -175,7 +244,6 @@ function addBookToLibrary(){
     displayLibrary();
     reset();
 }
-
 
 function reset(){
         document.querySelector('#title').value = ''
@@ -189,12 +257,11 @@ function reset(){
 const submitBtn = document.querySelector('#submit')
 submitBtn.addEventListener('click', addBookToLibrary)
 
-
 const book1 = new addBook2(
     'The Hobbit',
     'JRR Tolkein',
     '255',
-    'Read')
+    '1')
 
 let myLibrary = [book1];
 let indexDisplay
@@ -221,13 +288,7 @@ function removeBooks() {
 
 }
 
-
-
 displayLibrary()
-
-
-
-
 
 const book2 = new addBook(
     'Catch 22',
