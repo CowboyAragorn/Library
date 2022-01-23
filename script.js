@@ -12,28 +12,31 @@ function addBook2(title, author, pages, read) {
 }
 
 addBook2.prototype.sayBook = function () {
+
+//Creation of Dom elements//
     console.log(this.title, this.author, this.pages, this.read)
     let cover = document.createElement('div')
+    cover.id = n
+    n = n+1
     cover.classList.add("cover")
     let titleLabelElement = document.createElement('p') //labels are not the imported user inputs. Putting them separately for aesthetic stacking.
     let bookTitleElement = document.createElement('p')
-    bookTitleElement.id = n
-    n = n + 1
+    
     let authorLabelElement = document.createElement('p')
     let authorElement = document.createElement('p')
-    authorElement.id = n
-    n = n + 1
+   
     let pagesLabelElement = document.createElement('p')
     let pagesElement = document.createElement('p')
-    pagesElement.id = n
-    n = n + 1
+    
     let readLabelElement = document.createElement('p')
     let readElement = document.createElement('p')
-    readElement.id = n
+
     readElement.classList.add('readCheckClass')
-    n = n + 1
+   
+//remove button//  
+    let removeButton = document.createElement('button')
 
-
+//Adding classes. Different classes for headers than generated info//
     titleLabelElement.classList.add('labelText')
     bookTitleElement.classList.add('bookText')
     authorLabelElement.classList.add('labelText')
@@ -42,7 +45,9 @@ addBook2.prototype.sayBook = function () {
     pagesElement.classList.add('bookText')
     readLabelElement.classList.add('labelText')
 
+    removeButton.classList.add('removeButton')
 
+//Inserting object text//
     titleLabelElement.innerText = 'Title'
     bookTitleElement.innerText = this.title;
     authorLabelElement.innerText = 'Author'
@@ -52,7 +57,9 @@ addBook2.prototype.sayBook = function () {
     readLabelElement.innerText = "Read"
     readElement.innerText = this.read;
 
+    removeButton.innerText = 'Remove'
 
+//appending//
     bookshelf.append(cover)
     cover.append(titleLabelElement)
     cover.append(bookTitleElement)
@@ -62,9 +69,20 @@ addBook2.prototype.sayBook = function () {
     cover.append(pagesElement)
     cover.append(readLabelElement)
     cover.append(readElement)
+    cover.append(removeButton)
+
+//Remove button event listener//
+removeButton.addEventListener('click', function(){
+    bookshelf.removeChild(cover);
+    myLibrary.splice(cover.id,1);
+    displayLibrary();
+} )
 }
 
+
+
 //Remove above addbook2 when completed//
+
 
 function addBook() {
     this.title = document.querySelector('#title').value,
@@ -74,31 +92,33 @@ function addBook() {
 }
 
 
-let n =1
+let n = 0
 
 addBook.prototype.sayBook = function(){
+    //Creation of Dom elements//
     console.log(this.title, this.author, this.pages, this.read)
     let cover = document.createElement('div')
+    cover.id = n
+    n = n+1
     cover.classList.add("cover")
-        let titleLabelElement = document.createElement('p') //labels are not the imported user inputs. Putting them separately for aesthetic stacking.
-        let bookTitleElement = document.createElement('p')
-            bookTitleElement.id = n
-            n = n+1
-        let authorLabelElement = document.createElement('p')
-        let authorElement = document.createElement('p')
-            authorElement.id = n
-            n = n + 1
-        let pagesLabelElement = document.createElement('p')   
-        let pagesElement = document.createElement('p')
-            pagesElement.id = n
-            n = n+1
-        let readLabelElement = document.createElement('p')
-        let readElement = document.createElement('p')
-            readElement.id = n
-            readElement.classList.add('readCheckClass')
-            n = n+1
+    let titleLabelElement = document.createElement('p') //labels are not the imported user inputs. Putting them separately for aesthetic stacking.
+    let bookTitleElement = document.createElement('p')
 
+    let authorLabelElement = document.createElement('p')
+    let authorElement = document.createElement('p')
 
+    let pagesLabelElement = document.createElement('p')
+    let pagesElement = document.createElement('p')
+
+    let readLabelElement = document.createElement('p')
+    let readElement = document.createElement('p')
+
+    readElement.classList.add('readCheckClass')
+
+    //remove button//  
+    let removeButton = document.createElement('button')
+
+    //Adding classes. Different classes for headers than generated info//
     titleLabelElement.classList.add('labelText')
     bookTitleElement.classList.add('bookText')
     authorLabelElement.classList.add('labelText')
@@ -107,17 +127,21 @@ addBook.prototype.sayBook = function(){
     pagesElement.classList.add('bookText')
     readLabelElement.classList.add('labelText')
 
+    removeButton.classList.add('removeButton')
 
+    //Inserting object text//
     titleLabelElement.innerText = 'Title'
-    bookTitleElement.innerText = this.title; 
+    bookTitleElement.innerText = this.title;
     authorLabelElement.innerText = 'Author'
     authorElement.innerText = this.author;
     pagesLabelElement.innerText = "Pages"
-    pagesElement.innerText =this.pages;
+    pagesElement.innerText = this.pages;
     readLabelElement.innerText = "Read"
     readElement.innerText = this.read;
 
+    removeButton.innerText = 'Remove'
 
+    //appending//
     bookshelf.append(cover)
     cover.append(titleLabelElement)
     cover.append(bookTitleElement)
@@ -127,7 +151,16 @@ addBook.prototype.sayBook = function(){
     cover.append(pagesElement)
     cover.append(readLabelElement)
     cover.append(readElement)
+    cover.append(removeButton)
+
+    //Remove button event listener//
+    removeButton.addEventListener('click', function () {
+        bookshelf.removeChild(cover);
+        myLibrary.splice(cover.id, 1)
+        displayLibrary();
+    })
 }
+
 
 
 
@@ -149,6 +182,7 @@ function reset(){
         document.querySelector('#author').value = ''
         document.querySelector('#pages').value = ''
         document.querySelector('#readStatus').value = ''
+        n=0
     
 }
 
@@ -177,7 +211,7 @@ function displayLibrary() {
 }
 
 function removeBooks() {
-    n = 1;
+    n = 0;
     for (let i = 0; i < myLibrary.length; i++){
         while (bookshelf.firstChild){
             bookshelf.removeChild(bookshelf.firstChild)
