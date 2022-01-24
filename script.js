@@ -192,40 +192,39 @@ addBook.prototype.sayBook = function(){
     let readStatus
 
     function assignReadStatus() {
-        if (readStatus == '1') {
-            readElement.innerText = 'Yes'
-        }
-        else {
+        if (readStatus == '0') {
             readElement.innerText = 'No'
+        }
+        else if (readStatus == '1') {
+            readElement.innerText = 'Yes'
         }
     }
     
-    if (this.read == 'y'){
-        readStatus = '1'
-        assignReadStatus()
-    }
-    else {
+    if (this.read == '0'){
         readStatus = '0'
         assignReadStatus()
     }
-
+    else {
+        readStatus = '1'
+        assignReadStatus()
+    }
 
     readButton.addEventListener('click', function (){
-    if (readStatus == '1'){
-        readStatus = '0';
-        myLibrary[cover.id].read = 'n' //Changes the read property of the object in the array by calling to the index of the object in the array
-        console.log(myLibrary[cover.id]) 
-        assignReadStatus();
-    }
-    else if (readStatus == '0'){
-        readStatus = '1';
-        myLibrary[cover.id].read = 'y'
-        console.log(myLibrary[cover.id])
-        assignReadStatus();
-    }
-
-
+        if (readStatus == '1'){
+            readStatus = '0';
+            myLibrary[cover.id].read = '0' //Changes the read property of the object in the array by calling to the index of the object in the array
+            console.log(myLibrary[cover.id]) 
+            assignReadStatus();
+        }
+        else if (readStatus == '0'){
+            readStatus = '1';
+            myLibrary[cover.id].read = '1'
+            console.log(myLibrary[cover.id])
+            assignReadStatus();
+        }
     })
+
+
         //Remove button event listener//
         removeButton.addEventListener('click', function () {
             bookshelf.removeChild(cover);
