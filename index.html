@@ -9,16 +9,24 @@
 
 </head>
 <body>
-    <div id = inputSubmissions>
-        Title:<input type='text' id ='title'>
-        Author:<input type='text' id='author'>
-        Pages:<input type='number' id='pages'>
-        Read?:<select name ='Read?' id='readStatus'>
-            <option value = "1">Yes</option>
-            <option value="0">No</option>
-        </select>
-        <button id='submit'>Submit</button>
+    <div id = popupDisplay>
+        <button id = 'popupButton'>Add New Book</button>
     </div>
+    <div id = inputContainer>
+        <div id = inputCenter>
+            <div id = inputSubmissions>
+                Title:<input type='text' id ='title'>
+                Author:<input type='text' id='author'>
+                Pages:<input type='number' id='pages'>
+                Read?:<select name ='Read?' id='readStatus'>
+                    <option value = "1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+                <button id='submit'>Submit</button>
+            </div>
+        </div>
+    </div>
+
     <div id = 'bookshelf'>
 
     </div>

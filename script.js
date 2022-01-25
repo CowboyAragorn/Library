@@ -1,3 +1,25 @@
+//Popup changes input submissions display value to pop it up//
+
+const popupButton = document.querySelector('#popupButton')
+const inputContainer = document.querySelector('#inputContainer')
+const submitBtn = document.querySelector('#submit')
+
+inputContainer.style.display = 'none' //putting it as none first so that the css can be used to format the flex. Maybe inefficient?
+
+popupButton.addEventListener('click', () => {
+    inputContainer.style.display = "block"
+})
+
+submitBtn.addEventListener('click', () => {
+    inputContainer.style.display = "none"
+})
+
+
+
+
+
+
+
 //Constructor for books, addbook2 is simply for display test, to be removed after//
 function addBook2(title, author, pages, read) {
     this.title = title
@@ -244,6 +266,9 @@ function addBookToLibrary(){
     reset();
 }
 
+//Submit Button actually puts the stuff on the page//
+submitBtn.addEventListener('click', addBookToLibrary)
+
 function reset(){
         document.querySelector('#title').value = ''
         document.querySelector('#author').value = ''
@@ -253,8 +278,7 @@ function reset(){
     
 }
 
-const submitBtn = document.querySelector('#submit')
-submitBtn.addEventListener('click', addBookToLibrary)
+
 
 const book1 = new addBook2(
     'The Hobbit',
