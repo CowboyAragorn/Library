@@ -86,6 +86,9 @@ body{
     gap: 5pt;
 }
 
+#pages{
+    width: 35%;
+}
 
 #inputRight{
      display: flex;
@@ -133,10 +136,13 @@ margin-bottom: 5%;
     font-weight: bold;
     font-size: 14pt;
     margin: 0;
+    overflow-wrap: word-break;
+    word-break:break-word;
 }
 
 .bookText, .readCheckClass{
     overflow-wrap: word-break;
+    word-break:break-word;
     margin: 0;
 
 }

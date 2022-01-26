@@ -17,10 +17,10 @@ closeBtn.addEventListener('click', () => {
 
 
 
-submitBtn.addEventListener('click', () => {
+/*submitBtn.addEventListener('click', () => {
     inputContainer.style.display = "none"
 })
-
+*/
 
 
 
@@ -196,13 +196,13 @@ addBook.prototype.sayBook = function(){
     removeButton.classList.add('removeButton')
 
     //Inserting object text//
-    titleLabelElement.innerText = 'Title'
+    //titleLabelElement.innerText = 'Title'
     bookTitleElement.innerText = this.title;
-    authorLabelElement.innerText = 'Author'
+   // authorLabelElement.innerText = 'Author'
     authorElement.innerText = 'By: ' + this.author;
-    pagesLabelElement.innerText = "Pages"
+   // pagesLabelElement.innerText = "Pages"
     pagesElement.innerText = this.pages + ' pages';
-    readLabelElement.innerText = "Read"
+   // readLabelElement.innerText = "Read"
 
     removeButton.innerText = 'Remove'
 
@@ -298,6 +298,13 @@ addBook.prototype.sayBook = function(){
     }
 
 function addBookToLibrary(){
+    if (document.querySelector('#title').value == ''||
+        document.querySelector('#author').value == '' ||
+        document.querySelector('#pages').value == '' ||
+        document.querySelector('#readStatus').value == '' ){
+            alert('Please ensure all fields are completed')
+            return
+        }
     let book = new addBook(
         "document.querySelector('#title').value",
         "author: document.querySelector('#author').value",
@@ -309,7 +316,21 @@ function addBookToLibrary(){
 }
 
 //Submit Button actually puts the stuff on the page//
-submitBtn.addEventListener('click', addBookToLibrary)
+//submitBtn.addEventListener('click', addBookToLibrary)
+
+
+//Submit button on popup. Ensures all fields are filled in then gets rid of popup//
+submitBtn.addEventListener('click', () => {
+if (document.querySelector('#title').value == '' ||
+     document.querySelector('#author').value == '' ||
+     document.querySelector('#pages').value == '' ||
+     document.querySelector('#readStatus').value == '') {
+     alert('Please ensure all fields are completed')
+     return
+    }
+addBookToLibrary()
+inputContainer.style.display = "none"
+})
 
 function reset(){
         document.querySelector('#title').value = ''
