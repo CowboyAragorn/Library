@@ -9,8 +9,15 @@
 
 </head>
 <body>
+    <div id = header>
+        <div id = 'titleAndPic'>
+        <p id = 'siteTitle' class = 'header'>Virtual Library</p>
+        <img src='img/book-stack-transparent-background-25.png' id ='bookStack'>
+        </div>
+        <p id = 'subtitle' class = 'header'>Tsundoku in Cyberspace</p>
+    </div>
     <div id = popupDisplay>
-        <button id = 'popupButton'>Add New Book</button>
+        <input type = 'image' src = "img/PlusTransparentReal.png" id = 'createPopupButton'>
     </div>
     <div id = inputContainer> 
         <div id = inputCenterPopup>
@@ -24,7 +31,7 @@
                     Pages:<input type='number' id='pages'>
                     Read?:<select name ='Read?' id='readStatus'>
                         <option value = "1">Yes</option>
-                        <option value="0">No</option>
+                        <option value= "0">No</option>
                     </select>
                     <button id='submit' class = 'popupBtn'>Submit</button>
                 </div>

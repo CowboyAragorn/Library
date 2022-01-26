@@ -7,7 +7,7 @@ const submitBtn = document.querySelector('#submit')
 
 inputContainer.style.display = 'none' //putting it as none first so that the css can be used to format the flex. Maybe inefficient?
 
-popupButton.addEventListener('click', () => {
+createPopupButton.addEventListener('click', () => {
     inputContainer.style.display = "block"
 })
 
@@ -220,16 +220,19 @@ addBook.prototype.sayBook = function(){
     cover.append(removeButton)
 
     let readStatus
+    let currentReadColor
 
     function assignReadStatus() {
         if (readStatus == '0') {
             //readElement.innerText = 'No'
-            readButton.style.backgroundColor = 'red'
+            currentReadColor = 'silver'
+            readButton.style.backgroundColor = currentReadColor
             readButton.innerText = 'Not Yet Read'
         }
         else if (readStatus == '1') {
            // readElement.innerText = 'Yes'
-            readButton.style.backgroundColor = 'green'
+           currentReadColor = 'seagreen'
+            readButton.style.backgroundColor = currentReadColor
             readButton.innerText = 'Read'
         }
     }
@@ -243,13 +246,15 @@ addBook.prototype.sayBook = function(){
         assignReadStatus()
     }
 
+
     readButton.addEventListener('click', function () {
         if (readStatus == '1') {
             readStatus = '0';
             myLibrary[cover.id].read = '0' //Changes the read property of the object in the array by calling to the index of the object in the array
             console.log(myLibrary[cover.id])
             readButton.innerText = 'Not Yet Read'
-            readButton.style.backgroundColor = 'red'
+            currentReadColor = 'silver'
+            readButton.style.backgroundColor = currentReadColor
             assignReadStatus();
         }
         else if (readStatus == '0') {
@@ -257,11 +262,22 @@ addBook.prototype.sayBook = function(){
             myLibrary[cover.id].read = '1'
             console.log(myLibrary[cover.id])
             readButton.innerText = 'Read'
-            readButton.style.backgroundColor = 'green'
+            currentReadColor = 'seagreen'
+            readButton.style.backgroundColor = currentReadColor
             assignReadStatus();
         }
     })
 
+    readButton.addEventListener('mouseenter', () => {
+        readButton.style.backgroundColor = 'yellow'
+    })
+
+    readButton.addEventListener('mouseleave', () => {
+        readButton.style.backgroundColor = currentReadColor
+
+    })
+
+    removeButton.style.backgroundColor = 'salmon'
 
         //Remove button event listener//
         removeButton.addEventListener('click', function () {
@@ -269,6 +285,16 @@ addBook.prototype.sayBook = function(){
             myLibrary.splice(cover.id, 1);
             displayLibrary();
         })
+
+        removeButton.addEventListener('mouseenter', () => {
+            removeButton.style.backgroundColor = 'red'
+        })
+        
+         removeButton.addEventListener('mouseleave', () => {
+             removeButton.style.backgroundColor = 'salmon'
+
+         })
+        
     }
 
 function addBookToLibrary(){
