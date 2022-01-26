@@ -1,12 +1,10 @@
 //Popup changes input submissions display value to pop it up//
-
 const popupButton = document.querySelector('#popupButton')
 const inputContainer = document.querySelector('#inputContainer')
 const closeBtn = document.querySelector('#closeBtn')
 const submitBtn = document.querySelector('#submit')
 
-inputContainer.style.display = 'none' //putting it as none first so that the css can be used to format the flex. Maybe inefficient?
-
+//Makes the popup visible and then invisible when disabled//
 createPopupButton.addEventListener('click', () => {
     inputContainer.style.display = "block"
 })
@@ -16,135 +14,7 @@ closeBtn.addEventListener('click', () => {
 })
 
 
-
-/*submitBtn.addEventListener('click', () => {
-    inputContainer.style.display = "none"
-})
-*/
-
-
-
-
-
-/*
-//Constructor for books, addbook2 is simply for display test, to be removed after//
-function addBook2(title, author, pages, read) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
-}
-
-addBook2.prototype.sayBook = function () {
-
-//Creation of Dom elements//
-    console.log(this.title, this.author, this.pages, this.read)
-    let cover = document.createElement('div')
-    cover.id = n
-    n = n+1
-    cover.classList.add("cover")
-    let titleLabelElement = document.createElement('p') //labels are not the imported user inputs. Putting them separately for aesthetic stacking.
-    let bookTitleElement = document.createElement('p')
-    
-    let authorLabelElement = document.createElement('p')
-    let authorElement = document.createElement('p')
-   
-    let pagesLabelElement = document.createElement('p')
-    let pagesElement = document.createElement('p')
-    
-    let readLabelElement = document.createElement('p')
-    let readElement = document.createElement('p')
-
-    readElement.classList.add('readCheckClass')
-
-//Change Read Status//
-    let readButton = document.createElement('button')
-   
-//remove button//  
-    let removeButton = document.createElement('button')
-
-//Adding classes. Different classes for headers than generated info//
-    titleLabelElement.classList.add('labelText')
-    bookTitleElement.classList.add('bookText')
-    authorLabelElement.classList.add('labelText')
-    authorElement.classList.add('bookText')
-    pagesLabelElement.classList.add('labelText')
-    pagesElement.classList.add('bookText')
-    readLabelElement.classList.add('labelText')
-
-    readButton.classList.add('readButton')
-    removeButton.classList.add('removeButton')
-
-//Inserting object text//
-    titleLabelElement.innerText = 'Title'
-    bookTitleElement.innerText = this.title;
-    authorLabelElement.innerText = 'Author'
-    authorElement.innerText = this.author;
-    pagesLabelElement.innerText = "Pages"
-    pagesElement.innerText = this.pages;
-    readLabelElement.innerText = "Read"
-
-    let readStatus
-    if (this.read == 1) {
-        readStatus = true
-        changeReadStatus(); //Checkbox default unchecked value is zero
-    }
-    else {
-        readStatus = false
-        changeReadStatus();
-    }
-    readButton.innerText = 'Read?'
-    removeButton.innerText = 'Remove'
-
-//appending//
-    bookshelf.append(cover)
-    cover.append(titleLabelElement)
-    cover.append(bookTitleElement)
-    cover.append(authorLabelElement)
-    cover.append(authorElement)
-    cover.append(pagesLabelElement)
-    cover.append(pagesElement)
-    cover.append(readLabelElement)
-    cover.append(readElement)
-    cover.append(readButton)
-    cover.append(removeButton)
-
-    readButton.addEventListener('click', function () {
-        if (readStatus === true) {
-            readStatus = false
-            this.read = '0'
-            changeReadStatus();
-        }
-        else if (readStatus === false) {
-            readStatus = true
-            this.read = '1'
-            changeReadStatus();
-        }
-    })
-
-    function changeReadStatus() {
-        if (readStatus === false) {
-            readElement.innerText = 'No'
-        }
-        else if (readStatus === true) {
-            readElement.innerText = 'Yes'
-        }
-
-
-//Remove button event listener//
-removeButton.addEventListener('click', function(){
-    bookshelf.removeChild(cover);
-    myLibrary.splice(cover.id,1);
-    displayLibrary();
-} )
-}
-
-}
-
-*/
-//Remove above addbook2 when completed//
-
-
+//Object constructor for the books. This thing is so powerful, whack//
 function addBook() {
     this.title = document.querySelector('#title').value,
     this.author = document.querySelector('#author').value,
@@ -152,8 +22,11 @@ function addBook() {
     this.read = document.querySelector('#readStatus').value
 }
 
+//n is here to assign id's to each book, increases by 1 for each book added//
 let n = 0
 
+
+//This big guy creates all dom elements, pins them to a cover, and has the functions/event listeners for each cover's buttons//
 addBook.prototype.sayBook = function(){
     //Creation of Dom elements//
     console.log(this.title, this.author, this.pages, this.read)
@@ -161,16 +34,10 @@ addBook.prototype.sayBook = function(){
     cover.id = n
     n = n + 1
     cover.classList.add("cover")
-    let titleLabelElement = document.createElement('p') //labels are not the imported user inputs. Putting them separately for aesthetic stacking.
+    
     let bookTitleElement = document.createElement('p')
-
-    let authorLabelElement = document.createElement('p')
     let authorElement = document.createElement('p')
-
-    let pagesLabelElement = document.createElement('p')
     let pagesElement = document.createElement('p')
-
-    let readLabelElement = document.createElement('p')
     let readElement = document.createElement('p')
 
     readElement.classList.add('readCheckClass')
@@ -184,44 +51,31 @@ addBook.prototype.sayBook = function(){
     removeButton.classList.add('coverBtn')
 
     //Adding classes. Different classes for headers than generated info//
-    titleLabelElement.classList.add('labelText')
     bookTitleElement.classList.add('titleText')
-    authorLabelElement.classList.add('labelText')
     authorElement.classList.add('bookText')
-    pagesLabelElement.classList.add('labelText')
     pagesElement.classList.add('bookText')
-    readLabelElement.classList.add('labelText')
 
     readButton.classList.add('readButton')
     removeButton.classList.add('removeButton')
 
     //Inserting object text//
-    //titleLabelElement.innerText = 'Title'
     bookTitleElement.innerText = this.title;
-   // authorLabelElement.innerText = 'Author'
     authorElement.innerText = 'By: ' + this.author;
-   // pagesLabelElement.innerText = "Pages"
     pagesElement.innerText = this.pages + ' pages';
-   // readLabelElement.innerText = "Read"
-
     removeButton.innerText = 'Remove'
 
     //appending//
     bookshelf.append(cover)
-    //cover.append(titleLabelElement)
     cover.append(bookTitleElement)
-    //cover.append(authorLabelElement)
     cover.append(authorElement)
-    //cover.append(pagesLabelElement)
     cover.append(pagesElement)
-    //cover.append(readLabelElement)
-    //cover.append(readElement)
     cover.append(readButton)
     cover.append(removeButton)
 
     let readStatus
     let currentReadColor
 
+//Readstatus assigned based on user input from popup//
     function assignReadStatus() {
         if (readStatus == '0') {
             //readElement.innerText = 'No'
@@ -237,6 +91,7 @@ addBook.prototype.sayBook = function(){
         }
     }
     
+//This.read assigns readstatus for use as variable in various assignments//
     if (this.read == '0'){
         readStatus = '0'
         assignReadStatus()
@@ -246,7 +101,7 @@ addBook.prototype.sayBook = function(){
         assignReadStatus()
     }
 
-
+//Switches read status back and forth when click//
     readButton.addEventListener('click', function () {
         if (readStatus == '1') {
             readStatus = '0';
@@ -268,6 +123,7 @@ addBook.prototype.sayBook = function(){
         }
     })
 
+//Hovering changing colors for UI//
     readButton.addEventListener('mouseenter', () => {
         readButton.style.backgroundColor = 'yellow'
     })
@@ -294,17 +150,12 @@ addBook.prototype.sayBook = function(){
              removeButton.style.backgroundColor = 'salmon'
 
          })
-        
+//Prototype done! Probably too long!//  
     }
 
+
+//Object constructor inside function. Builds object, then pushes it to the array. Displays it and resets all the inputs//
 function addBookToLibrary(){
-    if (document.querySelector('#title').value == ''||
-        document.querySelector('#author').value == '' ||
-        document.querySelector('#pages').value == '' ||
-        document.querySelector('#readStatus').value == '' ){
-            alert('Please ensure all fields are completed')
-            return
-        }
     let book = new addBook(
         "document.querySelector('#title').value",
         "author: document.querySelector('#author').value",
@@ -315,10 +166,10 @@ function addBookToLibrary(){
     reset();
 }
 
+
+
 //Submit Button actually puts the stuff on the page//
 //submitBtn.addEventListener('click', addBookToLibrary)
-
-
 //Submit button on popup. Ensures all fields are filled in then gets rid of popup//
 submitBtn.addEventListener('click', () => {
 if (document.querySelector('#title').value == '' ||
@@ -332,6 +183,7 @@ addBookToLibrary()
 inputContainer.style.display = "none"
 })
 
+//Resets inputs//
 function reset(){
         document.querySelector('#title').value = ''
         document.querySelector('#author').value = ''
@@ -342,19 +194,14 @@ function reset(){
 }
 
 
-
-/* const book1 = new addBook2(
-    'The Hobbit',
-    'JRR Tolkein',
-    '255',
-    '1')
-*/
+//array declaration//
 let myLibrary = [];
 let indexDisplay
 let libraryNumber
 
 const bookshelf = document.querySelector('#bookshelf')
 
+//Clears the screen, then loops through the array and calls the prototype//
 function displayLibrary() {
     removeBooks()
     for (let i = 0; i < myLibrary.length; i++) {
@@ -363,6 +210,7 @@ function displayLibrary() {
     }
 }
 
+//clears all books to be replaced afterward//
 function removeBooks() {
     n = 0;
     for (let i = 0; i < myLibrary.length; i++){
@@ -373,17 +221,3 @@ function removeBooks() {
 
 
 }
-
-displayLibrary()
-
-const book2 = new addBook(
-    'Catch 22',
-    'Joseph Heller',
-    '255',
-    'Read')
-
-const book3 = new addBook(
-    'Shogun',
-    'James Clavell',
-    '1100',
-    'Reading')

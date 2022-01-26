@@ -50,6 +50,7 @@ body{
 
 /* The whole background when selected popup */
 #inputContainer{
+    display: none;
     position: fixed;
     background-color: rgba(0, 0 , 0, 0.5);
     top: 0;
