@@ -12,17 +12,22 @@
     <div id = popupDisplay>
         <button id = 'popupButton'>Add New Book</button>
     </div>
-    <div id = inputContainer>
-        <div id = inputCenter>
-            <div id = inputSubmissions>
-                Title:<input type='text' id ='title'>
-                Author:<input type='text' id='author'>
-                Pages:<input type='number' id='pages'>
-                Read?:<select name ='Read?' id='readStatus'>
-                    <option value = "1">Yes</option>
-                    <option value="0">No</option>
-                </select>
-                <button id='submit'>Submit</button>
+    <div id = inputContainer> 
+        <div id = inputCenterPopup>
+            <div id = 'inputBoxThatHoldsEverything'>
+                    <div id='inputRight'>
+                        <button id='closeBtn' class = 'popupBtn'>X</button>
+                    </div>
+                    <div id='inputSubmissions'>
+                    Title:<input type='text' id ='title'>
+                    Author:<input type='text' id='author'>
+                    Pages:<input type='number' id='pages'>
+                    Read?:<select name ='Read?' id='readStatus'>
+                        <option value = "1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <button id='submit' class = 'popupBtn'>Submit</button>
+                </div>
             </div>
         </div>
     </div>

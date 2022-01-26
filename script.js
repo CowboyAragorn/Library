@@ -2,6 +2,7 @@
 
 const popupButton = document.querySelector('#popupButton')
 const inputContainer = document.querySelector('#inputContainer')
+const closeBtn = document.querySelector('#closeBtn')
 const submitBtn = document.querySelector('#submit')
 
 inputContainer.style.display = 'none' //putting it as none first so that the css can be used to format the flex. Maybe inefficient?
@@ -9,6 +10,12 @@ inputContainer.style.display = 'none' //putting it as none first so that the css
 popupButton.addEventListener('click', () => {
     inputContainer.style.display = "block"
 })
+
+closeBtn.addEventListener('click', () => {
+    inputContainer.style.display = "none"
+})
+
+
 
 submitBtn.addEventListener('click', () => {
     inputContainer.style.display = "none"
@@ -19,7 +26,7 @@ submitBtn.addEventListener('click', () => {
 
 
 
-
+/*
 //Constructor for books, addbook2 is simply for display test, to be removed after//
 function addBook2(title, author, pages, read) {
     this.title = title
@@ -134,7 +141,7 @@ removeButton.addEventListener('click', function(){
 
 }
 
-
+*/
 //Remove above addbook2 when completed//
 
 
@@ -170,13 +177,15 @@ addBook.prototype.sayBook = function(){
 
     //Change Read Status//
     let readButton = document.createElement('button')
+    readButton.classList.add('coverBtn')
 
     //remove button//  
     let removeButton = document.createElement('button')
+    removeButton.classList.add('coverBtn')
 
     //Adding classes. Different classes for headers than generated info//
     titleLabelElement.classList.add('labelText')
-    bookTitleElement.classList.add('bookText')
+    bookTitleElement.classList.add('titleText')
     authorLabelElement.classList.add('labelText')
     authorElement.classList.add('bookText')
     pagesLabelElement.classList.add('labelText')
@@ -190,24 +199,23 @@ addBook.prototype.sayBook = function(){
     titleLabelElement.innerText = 'Title'
     bookTitleElement.innerText = this.title;
     authorLabelElement.innerText = 'Author'
-    authorElement.innerText = this.author;
+    authorElement.innerText = 'By: ' + this.author;
     pagesLabelElement.innerText = "Pages"
-    pagesElement.innerText = this.pages;
+    pagesElement.innerText = this.pages + ' pages';
     readLabelElement.innerText = "Read"
 
-    readButton.innerText = 'Read?'
     removeButton.innerText = 'Remove'
 
     //appending//
     bookshelf.append(cover)
-    cover.append(titleLabelElement)
+    //cover.append(titleLabelElement)
     cover.append(bookTitleElement)
-    cover.append(authorLabelElement)
+    //cover.append(authorLabelElement)
     cover.append(authorElement)
-    cover.append(pagesLabelElement)
+    //cover.append(pagesLabelElement)
     cover.append(pagesElement)
-    cover.append(readLabelElement)
-    cover.append(readElement)
+    //cover.append(readLabelElement)
+    //cover.append(readElement)
     cover.append(readButton)
     cover.append(removeButton)
 
@@ -215,10 +223,14 @@ addBook.prototype.sayBook = function(){
 
     function assignReadStatus() {
         if (readStatus == '0') {
-            readElement.innerText = 'No'
+            //readElement.innerText = 'No'
+            readButton.style.backgroundColor = 'red'
+            readButton.innerText = 'Not Yet Read'
         }
         else if (readStatus == '1') {
-            readElement.innerText = 'Yes'
+           // readElement.innerText = 'Yes'
+            readButton.style.backgroundColor = 'green'
+            readButton.innerText = 'Read'
         }
     }
     
@@ -231,17 +243,21 @@ addBook.prototype.sayBook = function(){
         assignReadStatus()
     }
 
-    readButton.addEventListener('click', function (){
-        if (readStatus == '1'){
+    readButton.addEventListener('click', function () {
+        if (readStatus == '1') {
             readStatus = '0';
             myLibrary[cover.id].read = '0' //Changes the read property of the object in the array by calling to the index of the object in the array
-            console.log(myLibrary[cover.id]) 
+            console.log(myLibrary[cover.id])
+            readButton.innerText = 'Not Yet Read'
+            readButton.style.backgroundColor = 'red'
             assignReadStatus();
         }
-        else if (readStatus == '0'){
+        else if (readStatus == '0') {
             readStatus = '1';
             myLibrary[cover.id].read = '1'
             console.log(myLibrary[cover.id])
+            readButton.innerText = 'Read'
+            readButton.style.backgroundColor = 'green'
             assignReadStatus();
         }
     })
@@ -280,13 +296,13 @@ function reset(){
 
 
 
-const book1 = new addBook2(
+/* const book1 = new addBook2(
     'The Hobbit',
     'JRR Tolkein',
     '255',
     '1')
-
-let myLibrary = [book1];
+*/
+let myLibrary = [];
 let indexDisplay
 let libraryNumber
 

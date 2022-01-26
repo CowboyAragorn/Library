@@ -1,13 +1,15 @@
 body{
     font-family: sans-serif;
-     height: 100%;
+    height: 100%;
     width: 100%;
-    margin: 0;
+    margin: 1%;
     padding: 0;
-    background-color: firebrick;
+    background-color: steelblue;
 }
 
 /* Fixed positions are outside of normal flow, can't use flexbox */
+
+/* The whole background when selected popup */
 #inputContainer{
     position: fixed;
     background-color: rgba(0, 0 , 0, 0.5);
@@ -18,24 +20,50 @@ body{
     z-index: 1;
 }
 
-#inputCenter{
+/* Center that has submission box in it, puts submission box in center */
+#inputCenterPopup{
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 10%;
 }
 
+#inputBoxThatHoldsEverything{
+    display: flex;
+    flex-direction: column;
+    border: 2pt black solid;
+    width: 200pt;
+    background-color: seagreen;
+    
+
+}
+
+/*Makes input submissions centered */
 #inputSubmissions{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 5pt;
-    border: 2pt black solid;
-    width: 200pt;
-    background-color: white;
-    
+}
 
+
+#inputRight{
+     display: flex;
+    align-items: right;
+    justify-content: right;
+    margin-top: 5%;
+    margin-right: 5%;
+}
+
+#closeBtn{
+    background-color: red;
+    color: white;
+}
+
+#submit{
+margin-top: 5pt;
+margin-bottom: 5%;
 }
 
 #bookshelf{
@@ -47,28 +75,41 @@ body{
 .cover{
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    overflow-wrap: normal;
+    font-size: 12pt;
+    margin: 0;
+    gap: 6pt;
+    overflow-wrap: word-break;
     background-color: burlywood;
-    gap: 2pt;
-    justify-content: center;
-    align-items: center;
-    width: 150pt;
+    justify-content: space-between;
+    align-items: left;
+    width: 225pt;
     border: 2pt black solid;
+    margin-left: 1%;
+}
+
+.titleText{
+    font-weight: bold;
+    font-size: 14pt;
+    margin: 0;
 }
 
 .bookText, .readCheckClass{
-    margin: 2pt;
-    font-weight: bold;
+    overflow-wrap: word-break;
+    margin: 0;
 
+}
+
+.coverBtn{
+ width: 50%;
+ border-radius: 9%;
 }
 
 
 
 .labelText{
-    margin: 2pt;
-    margin-top: 5pt;
+    margin: 0pt;
+    margin-top: 2pt;
     text-decoration: underline;
-    font-size: 14pt;
+    font-size: 10pt;
     
 }
